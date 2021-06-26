@@ -1,0 +1,70 @@
+<svg width="124px" height="124px" viewBox="0 0 124 124" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>illus 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="109.975%" y1="104.35%" x2="-6.975%" y2="-1.65%" id="technology-3-linearGradient-1">
+            <stop stop-color="#26055B" offset="0%"></stop>
+            <stop stop-color="#814D6F" offset="69%"></stop>
+            <stop stop-color="#A66A77" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-18.3953145%" y1="63.6339064%" x2="108.713304%" y2="38.3955023%" id="technology-3-linearGradient-2">
+            <stop stop-color="#F97199" offset="0%"></stop>
+            <stop stop-color="#F9769A" offset="12%"></stop>
+            <stop stop-color="#FB9BA3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-18.4058476%" y1="63.7101119%" x2="108.720075%" y2="38.4312583%" id="technology-3-linearGradient-3">
+            <stop stop-color="#F97199" offset="0%"></stop>
+            <stop stop-color="#F9769A" offset="12%"></stop>
+            <stop stop-color="#FB9BA3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="technology-3-linearGradient-4">
+            <stop stop-color="#BE7FF6" offset="0%"></stop>
+            <stop stop-color="#E190FC" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wireframe" transform="translate(-1044.000000, -5103.000000)">
+            <g id="Technology" transform="translate(390.000000, 4913.000000)">
+                <g id="illus-3" transform="translate(654.000000, 191.000000)">
+                    <g id="Group-9" transform="translate(11.272727, 8.198347)">
+                        <ellipse id="Oval" fill="url(#technology-3-linearGradient-1)" fill-rule="nonzero" cx="48.1652893" cy="48.677686" rx="48.1652893" ry="48.677686"></ellipse>
+                        <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" opacity="0.05" cx="48.1652893" cy="48.1652893" r="40.9917355"></circle>
+                        <path d="M25.6198347,14.3471074 C31.2638256,10.4181458 37.9944292,7.93844973 45.0909091,7.17355372" id="Shape" stroke="#FFFFFF" stroke-width="2" opacity="0.3" stroke-linecap="round"></path>
+                        <path d="M66.6115702,85.0578512 C60.6039169,87.7611232 53.8256751,89.1732087 46.9355372,89.1568849 C45.2914297,89.1572488 43.648787,89.0782783 42.0165289,88.9204021" id="Shape" stroke="#FFFFFF" stroke-width="2" opacity="0.3" stroke-linecap="round"></path>
+                        <g id="Group" opacity="0.9" transform="translate(29.719008, 25.619835)" fill-rule="nonzero">
+                            <polygon id="Shape" fill="#DF82CA" points="5.07927791 15.237514 16.2701825 8.69485262 16.2213139 24.3136119 5.05484362 30.8562733"></polygon>
+                            <polygon id="Shape" fill="#E7C6FF" points="5.05484362 30.8562733 16.2213139 24.3136119 34.2293852 34.7671123 23.0629149 41.3097736"></polygon>
+                            <polygon id="Shape" fill="#E7C6FF" points="0.58336866 7.41583611 11.7742732 0.873174733 20.7660917 6.11222313 9.59962146 12.6548845"></polygon>
+                            <polygon id="Shape" fill="#DF82CA" points="9.59962146 12.6548845 20.7660917 6.11222313 20.7660917 11.3020786 9.57518717 17.84474"></polygon>
+                            <polygon id="Shape" fill="#FFFFFF" points="27.6076928 23.1083848 27.5343899 49.1314515 0.510065792 33.4389028 0.58336866 7.41583611 9.59962146 12.6548845 9.57518717 17.84474 5.07927791 15.237514 5.05484362 30.8562733 23.0629149 41.3097736 23.0873492 25.6910143 18.59144 23.0837884 18.59144 17.8693364"></polygon>
+                            <polygon id="Shape" fill="#DF82CA" points="27.6076928 23.1083848 38.774163 16.5657235 38.7008602 42.5887901 27.5343899 49.1314515"></polygon>
+                            <polygon id="Shape" fill="#E7C6FF" points="18.59144 17.8693364 29.7823445 11.3266751 38.774163 16.5657235 27.6076928 23.1083848"></polygon>
+                        </g>
+                        <path d="M87.107438,34.8429752 C88.445086,39.3864414 89.1415777,44.2618832 89.1570248,49.1900826" id="Shape" stroke="#FFFFFF" stroke-width="2" opacity="0.3" stroke-linecap="round"></path>
+                    </g>
+                    <g id="Group-7" transform="translate(0.000000, 63.561983)">
+                        <path d="M23.9165655,0.86756761 L0.662503697,12.0836094 C0.18101322,12.315692 -0.0808682892,12.8290904 0.022294181,13.3386904 C1.40597281,19.7137053 10.6167291,59.4380165 27.6752149,59.4380165 C44.7337007,59.4380165 53.9444569,19.7137053 55.3074836,13.3386904 C55.4346799,12.8262565 55.1657562,12.2990525 54.6672741,12.0836094 L31.4132124,0.86756761 C29.058189,-0.289189203 26.2715888,-0.289189203 23.9165655,0.86756761 Z" id="Shape" fill="url(#technology-3-linearGradient-2)" fill-rule="nonzero" opacity="0.2"></path>
+                        <path d="M24.471688,4.83881193 L4.67193638,14.5136802 C4.24980657,14.7074185 4.02173398,15.1614514 4.12307263,15.6063244 C5.281785,21.1092783 13.1285038,55.338843 27.6632291,55.338843 C42.1979544,55.338843 50.0243449,21.0496795 51.2237139,15.6063244 C51.303057,15.1642608 51.0812528,14.7227066 50.6748501,14.5136802 L30.915755,4.83881193 C28.8862514,3.85262743 26.5011917,3.85262743 24.471688,4.83881193 Z" id="Shape" fill="url(#technology-3-linearGradient-3)" fill-rule="nonzero"></path>
+                        <ellipse id="Oval" fill="#000000" fill-rule="nonzero" opacity="0.1" cx="27.6694215" cy="28.1818182" rx="14.3471074" ry="14.8595041"></ellipse>
+                        <polyline id="Shape" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="22.5454545 26.6446281 26.3030303 30.7438017 33.8181818 24.5950413"></polyline>
+                    </g>
+                    <circle id="Oval" fill="#E7C6FF" fill-rule="nonzero" cx="121.650826" cy="57.6012397" r="1.75"></circle>
+                    <path d="M110.677686,0 L104.528926,6.14876033" id="Shape" stroke="#F9CDE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M104.528926,0 L110.677686,6.14876033" id="Shape" stroke="#F9CDE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <g id="Group-8" transform="translate(83.008264, 71.735537)">
+                        <g id="Group-17">
+                            <circle id="Oval" stroke="#EFE0FC" stroke-width="2.5" cx="19.4710744" cy="9.2231405" r="9.2231405"></circle>
+                            <rect id="Rectangle-path" fill="url(#technology-3-linearGradient-4)" fill-rule="nonzero" x="0" y="9.2231405" width="36.892562" height="36.892562" rx="18.446281"></rect>
+                            <g id="Group-32" transform="translate(15.371901, 21.520661)" fill="#FFFFFF" fill-rule="nonzero">
+                                <circle id="Oval" cx="3.58677686" cy="3.58677686" r="3.58677686"></circle>
+                                <rect id="Rectangle-path" x="2.04958678" y="5.12396694" width="3.07438017" height="5.12396694" rx="1.53719008"></rect>
+                            </g>
+                        </g>
+                    </g>
+                    <rect id="Rectangle-path" fill="#E7C6FF" fill-rule="nonzero" x="2.04958678" y="12.2975207" width="9.2231405" height="3.07438017" rx="1.53719008"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
