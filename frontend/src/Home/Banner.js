@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Web3 from 'web3';
 //import web3coneect from '../getWeb3';
-const api = require('binance');
+import Binance from 'binance-api-node';
+import axios from 'axios';
 
 const Banner = () => {
     const [Address, setAddress] = useState('')
     const [amount, setAmount] = useState('')
+    const [chanAmount, setChangeAmount] = useState()
 
     const [transactionAddress, setTransactionAddress] = useState('')
     const web31 = new Web3(Web3.givenProvider)
@@ -14,40 +16,19 @@ const Banner = () => {
     //       "https://data-seed-prebsc-1-s1.binance.org:8545/"
     //     )
     //   );
+    const client = Binance()
+    useEffect( async () => {
+        await client.prices().then((e) => setChangeAmount(e.BNBUSDT))
+    }, [])
 
     const handleAmount = (e) => {
         e.preventDefault()
         setAmount(e.target.value)
-        const bnbdata = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade")
-        bnbdata.onmessage = (event) => {
-                var obj = JSON.parse(event.data)
-            console.log(obj.p)
-           
-            }
-            console.log("please stop")
-            
-        }
     }
-    
-      
-        // setInterval(() => {
-        //     bnbdata.onmessage = (event) => {
-        //         var obj = JSON.parse(event.data)
-        //         console.log(obj.p)
-        //         return
-        //     }
-        // }, 5000)
-   
-    // var obj = 0;
-    // 
-    //     setInterval(() => {
-    //          obj = JSON.parse(event.data)
-    //          console.log(obj.p)
-    //     }, 20000)
-    // }
-         
- 
- //console.log(bnbdata, 'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
+
+    const x = amount * chanAmount * 100
+
+    //console.log(bnbdata, 'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
     const connectMetamask = async () => {
         if (window.ethereum) {
             try {
@@ -72,7 +53,7 @@ const Banner = () => {
     }
 
 
-   
+
     const transactionMetamask = async () => {
 
         if (window.ethereum) {
@@ -97,6 +78,10 @@ const Banner = () => {
     };
 
 
+    useEffect(async () => {
+        await axios.get("/api/claim_store");
+        await axios.get("/api/claim_token_distribute");
+      }, []);
 
     return (
         <div>
@@ -145,39 +130,39 @@ const Banner = () => {
                     <div class="container ">
                         <div class="row align-items-center">
                             {/* Welcome Content */}
-                            <div  style={{ display: "flex", justifyContent : "space-between" }}>
-                                <div class="welcome-content" style={{ display: "flex", flex : .5}}>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                <div class="welcome-content" style={{ display: "flex", flex: .5 }}>
                                     <div>
-                                    <div class="promo-section">
-                                    </div>
-                                    <h3 class="fadeInUp" data-wow-delay="0.2s" style={{ paddingTop: 80 }}>Welcome to CAPSTONE</h3>
-                                    <p class="w-text fadeInUp" data-wow-delay="0.3s">CAPS token is the official cryptocurrency of Capstone Markets Brokerage.</p>
-                                    <p class="w-text fadeInUp" data-wow-delay="0.3s">Capstone Markets provides a full range of services including and not limited to Trading Financial Markets, Financial Education, Trading Alerts, AI software and Algo Trading Robots, payable using CAPS token.</p>
-                                    <p class="w-text fadeInUp" data-wow-delay="0.3s">It is also the first ever token that gives you the opportunity to be a shareholder of the company through the current Pre-sales PROMOTIONAL PACKAGE.</p>
+                                        <div class="promo-section">
+                                        </div>
+                                        <h3 class="fadeInUp" data-wow-delay="0.2s" style={{ paddingTop: 80 }}>Welcome to CAPSTONE</h3>
+                                        <p class="w-text fadeInUp" data-wow-delay="0.3s">CAPS token is the official cryptocurrency of Capstone Markets Brokerage.</p>
+                                        <p class="w-text fadeInUp" data-wow-delay="0.3s">Capstone Markets provides a full range of services including and not limited to Trading Financial Markets, Financial Education, Trading Alerts, AI software and Algo Trading Robots, payable using CAPS token.</p>
+                                        <p class="w-text fadeInUp" data-wow-delay="0.3s">It is also the first ever token that gives you the opportunity to be a shareholder of the company through the current Pre-sales PROMOTIONAL PACKAGE.</p>
 
-                                    <p class="w-text fadeInUp" data-wow-delay="0.3s">Don't just buy tokens. Own the company too!</p>
-                                    <div class="dream-btn-group fadeInUp" data-wow-delay="0.4s">
-                                        <a href="#whitepaper" class="btn more-btn mr-3">Whitepaper</a>
-                                        
-                                    </div>
+                                        <p class="w-text fadeInUp" data-wow-delay="0.3s">Don't just buy tokens. Own the company too!</p>
+                                        <div class="dream-btn-group fadeInUp" data-wow-delay="0.4s">
+                                            <a href="#whitepaper" class="btn more-btn mr-3">Whitepaper</a>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <div style={{ position: "relative", zIndex: 1, marginTop: 195 }}>
-                                    <div style={{ width: 350, height : 300, backgroundColor : "white",borderRadius : 10 }}>
-                                    <div style={{paddingLeft : 120, paddingTop : 30}}>
-                                        <p class="btn " style={{backgroundColor : "red" }}>Buy Token</p>
+                                    <div style={{ width: 350, height: 300, backgroundColor: "white", borderRadius: 10 }}>
+                                        <div style={{ paddingLeft: 80, paddingTop: 30 }}>
+                                            <p class="btn " style={{ backgroundColor: "red", width : 200 }}>Buy Token</p>
+                                        </div>
+                                        <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
+                                            <h3>BNB :</h3><span>  </span><input style={{ height: 50, border: "none" }} type="text" placeholder="  Enter BNB amount" name="amount" value={amount} onChange={handleAmount} /><h5>BNB</h5>
+                                        </div>
+                                        <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
+                                            <h3>Total :</h3><span style={{ height: 30, width: 180 }} >  {x.toFixed(2)}</span><h5>CAPS</h5>
+                                        </div>
+                                        <div style={{ paddingLeft: 120, paddingTop: 10 }}>
+                                            <a onClick={() => transactionMetamask()}  href="#buy" class="btn buy">Buy</a>
+                                        </div>
                                     </div>
-                                    <div style={{display : "flex", alignItems : "center", paddingLeft : 10,  paddingTop : 10}}>
-                                        <h3>BNB :</h3><span>  </span><input style={{height : 50, border : "none"}} type="text" placeholder="  Enter BNB amount" name="amount" value={amount} onChange={handleAmount}  /><h5>BNB</h5>
-                                    </div>
-                                    <div style={{display : "flex", alignItems : "center", paddingLeft : 10,  paddingTop : 10}}>
-                                        <h3>Total :</h3><span  style={{height : 30, width: 120}} >{  amount}</span><h5>CAPS</h5>
-                                    </div>
-                                    <div style={{paddingLeft : 120, paddingTop : 10}}>
-                                        <a onClick={() => transactionMetamask()} style={{backgroundColor : "blue", width: 120, color :"white" }} href="#buy" class="btn">Buy</a>
-                                    </div>
-                                    </div>
-                                    
+
                                 </div>
                             </div>
                             {/* <div class="col-lg-6">
