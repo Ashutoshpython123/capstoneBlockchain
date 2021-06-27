@@ -4,6 +4,8 @@ const fetch = require("node-fetch");
 const Web3 = require("web3");
 const fs = require("fs");
 const Tx = require("ethereumjs-tx");
+const Binance = require('binance-api-node').default;
+
 
 //CRUD functions for ico Pool
 const claimFactoryCtrl = {
@@ -19,7 +21,7 @@ const claimFactoryCtrl = {
 			//console.log(startBlock, "ssssssssssssssssssssssssss");
 
 			const blockchain_data = await fetch(
-				`https://api-testnet.bscscan.com/api?module=account&action=txlist&address=0xcEA9b642c48764eAaa1589D0146c8f21D1B27132&startblock=${startBlock}&endblock=latest&sort=asc&apikey=S5MX4JTHR55MSPYRN54BJYDUD3DCC1ZEHN`,
+				`https://api-testnet.bscscan.com/api?module=account&action=txlist&address=0xb009b3e51F81D1382e92e5FA56Be7a8e8A7a96dd&startblock=${startBlock}&endblock=latest&sort=asc&apikey=S5MX4JTHR55MSPYRN54BJYDUD3DCC1ZEHN`,
 			);
 
 			//`https://api-testnet.bscscan.com/api?module=account&action=txlist&address=${addr}&startblock=${startBlock}&endblock=latest&sort=asc&apikey=S5MX4JTHR55MSPYRN54BJYDUD3DCC1ZEHN`
@@ -42,7 +44,7 @@ const claimFactoryCtrl = {
 						value: value18,
 						block_number: response_data.result[i].blockNumber,
 					});
-					//console.log(newClaim, "line 42");
+					console.log(newClaim, "line 47");
 					await newClaim.save();
 				}
 			}
@@ -59,13 +61,22 @@ const claimFactoryCtrl = {
 					"https://data-seed-prebsc-1-s1.binance.org:8545/",
 				),
 			);
-			//0x35a7343c43Cb4158d340dcB2f440f3447B4c3b02
-			const token_address = "0xa62763335dCa2f1E4E2238700f82cC532c67C334";
+            
+			//token calulation
+			const client = Binance()
+			const tokenRes = await client.prices();
+			// console.log(tokenRes.BNBUSDT , "this is stoken resposseeeeee");
+			const BNBRes = tokenRes.BNBUSDT;
+	        //  const BNBAuto = BNBRes.toFixed(2);
+			 console.log(BNBRes , "this is stoken resposseeeeee..........BNBRes.........");
+			//  const x = amount *  * 100
+
+			
+			const token_address = "0xbA39F8Fe69Bc138EA3A9E964e31a76bb1515C130";
 			const claimDetail = await claimFactory.find({
 				claim_status: "0",
 			});
-			//	0x35a7343c43Cb4158d340dcB2f440f3447B4c3b02
-			// 0x1bf15125f1D9f89A1EA08A56c8abE8Cb0D55F9d5
+			
 			for (i = 0; i < claimDetail.length; i++) {
 				let tokenAddress = token_address; // Token contract address
 				let toAddress = claimDetail[i].from_address; // User address
@@ -74,17 +85,14 @@ const claimFactoryCtrl = {
 					"3f86089698d512ac8fdc93014d76a08dab76122f83db98bee5329b79ad91a4f9",
 					"hex",
 				);
-				//4c928daf8d2759fc63865c82efa5b4d3723f59fb8186fb7ee701bd37d2a55847
-				//	3f86089698d512ac8fdc93014d76a08dab76122f83db98bee5329b79ad91a4f9
+				
 				console.log(toAddress, "froooooooooooooooooooooooooommmmmmmmmmmmm");
 
-				//console.log(states, "sssssssssssssssssssssssssssssssssss");
-
 				const rawdata = fs.readFileSync("abi/contract_abi.json", "utf8");
-				console.log(rawdata, "5555555555555555555555");
-				let SeedifyFundsContractAbi = JSON.parse(rawdata);
+				// console.log(rawdata, "5555555555555555555555");
+				let ContractAbi = JSON.parse(rawdata);
 				let contract = new web3.eth.Contract(
-					SeedifyFundsContractAbi,
+					ContractAbi,
 					tokenAddress,
 					{
 						from: fromAddress,
@@ -94,11 +102,18 @@ const claimFactoryCtrl = {
 				// 1e18 === 1 HST
 				// let amount = Web3js.utils.toHex(1e18)
 				let amount = claimDetail[i].value;
-				const weiValue = web3.utils.toWei(`${amount}`, "ether");
-				console.log(weiValue);
+				console.log(amount ,"from LIne 97.............................")
+                 
+				//calculation
+				let CalAmount = amount * BNBRes * 100 ;
+                console.log(CalAmount, "9999999999999999999999999999 .........CalAmount.........");
+                
+				const weiValue = CalAmount * 10**9;
+				// const weiValue = web3.utils.toWei(`${CalAmount}`, "ether");
+				console.log(weiValue,"line no 112 ....................");
 				//console.log(amount, "9999999999999999999999999999");
 				const count = await web3.eth.getTransactionCount(fromAddress);
-				console.log(count, "9999999999999999999999999999");
+				// console.log(count, "9999999999999999999999999999");
 
 				let rawTransaction = {
 					from: fromAddress,
@@ -111,18 +126,18 @@ const claimFactoryCtrl = {
 					chainId: 97,
 				};
 				let transaction = new Tx(rawTransaction);
-				console.log(transaction, "878787878787878787878787");
+				// console.log(transaction, "878787878787878787878787");
 				transaction.sign(privateKey);
 				const trans = await web3.eth.sendSignedTransaction(
 					"0x" + transaction.serialize().toString("hex"),
 				);
-				console.log(trans, "000000000000000000000000");
+				// console.log(trans, "000000000000000000000000");
 				if (trans) {
 					const states = await claimFactory.findOneAndUpdate(
 						{ from_address: toAddress, claim_status: "0" },
 						{ claim_status: "1" },
 					);
-					console.log(states, "9999999999999999");
+					// console.log(states, "9999999999999999");
 				}
 			}
 			res.json({ msg: "Tokens have been sent to repective users" });

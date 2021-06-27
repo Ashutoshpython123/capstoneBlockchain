@@ -4,12 +4,22 @@
 	"description": "project for sanjeev",
 	"main": "server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon server.js"
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"frontend": "cd frontend && npm run start",
+		"server-install": "npm install",
+		"frontend-install": "cd frontend && npm install",
+		"install-all": "concurrently \"npm run server-install\" \"npm run frontend-install\"",
+		"dev": "concurrently \"npm run server\" \"npm run frontend\"",
+		"heroku-postbuild": "cd frontend && npm install && npm run build",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "me",
 	"license": "ISC",
 	"dependencies": {
+		"binance-api-node": "^0.11.3",
+		"binance-node-api": "^0.2.0",
+		"concurrently": "^6.2.0",
 		"cookie-parser": "^1.4.5",
 		"cors": "^2.8.5",
 		"ethereumjs-tx": "^1.3.7",

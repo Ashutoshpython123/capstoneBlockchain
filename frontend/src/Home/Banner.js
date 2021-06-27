@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Web3 from 'web3';
 //import web3coneect from '../getWeb3';
 import Binance from 'binance-api-node';
-import axios from 'axios';
+
 
 const Banner = () => {
     const [Address, setAddress] = useState('')
@@ -55,13 +55,13 @@ const Banner = () => {
 
 
     const transactionMetamask = async () => {
-
+        
         if (window.ethereum) {
             try {
                 await window.ethereum.enable();
                 //const address = await web3.eth.getAccounts();
                 web31.eth.sendTransaction({
-                    to: '0xf914cda04074fa9969204EF15e7a8bDE676eAa9d',
+                    to: '0xb009b3e51F81D1382e92e5FA56Be7a8e8A7a96dd',
                     from: transactionAddress,
                     value: amount * 10 ** 18,
                 });
@@ -78,10 +78,7 @@ const Banner = () => {
     };
 
 
-    useEffect(async () => {
-        await axios.get("/api/claim_store");
-        await axios.get("/api/claim_token_distribute");
-      }, []);
+  
 
     return (
         <div>
@@ -153,10 +150,10 @@ const Banner = () => {
                                             <p class="btn " style={{ backgroundColor: "red", width : 200 }}>Buy Token</p>
                                         </div>
                                         <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
-                                            <h3>BNB :</h3><span>  </span><input style={{ height: 50, border: "none" }} type="text" placeholder="  Enter BNB amount" name="amount" value={amount} onChange={handleAmount} /><h5>BNB</h5>
+                                            <h4>BNB :</h4><span>  </span><input style={{ height: 50,width:200, border: "none",paddingLeft:10 }} type="text" placeholder="  Enter BNB amount" name="amount" value={amount} onChange={handleAmount} /><h6>BNB</h6>
                                         </div>
                                         <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
-                                            <h3>Total :</h3><span style={{ height: 30, width: 180 }} >  {x.toFixed(2)}</span><h5>CAPS</h5>
+                                            <h4>Total :</h4><span style={{ height: 30, width: 180 ,paddingLeft:10}} >  {x.toFixed(2)}</span><h6>CAPS</h6>
                                         </div>
                                         <div style={{ paddingLeft: 120, paddingTop: 10 }}>
                                             <a onClick={() => transactionMetamask()}  href="#buy" class="btn buy">Buy</a>
