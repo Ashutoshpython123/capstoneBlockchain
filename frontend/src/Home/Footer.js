@@ -5,7 +5,7 @@ const Footer = () => {
         <div>
 
     {/* ##### Footer Area Start ##### */}
-    <footer class="footer-area bg-img" style={{backgroundImage: "img/core-img/pattern.png"}}>
+    <footer class="footer-area bg-img" id="contact" style={{backgroundImage: "img/core-img/pattern.png"}}>
     
         {/* ##### Contact Area End ##### */}
 
