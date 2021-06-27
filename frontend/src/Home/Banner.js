@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Web3 from 'web3';
 //import web3coneect from '../getWeb3';
 import Binance from 'binance-api-node';
-
+import axios from "axios"
 
 const Banner = () => {
     const [Address, setAddress] = useState('')
@@ -51,6 +51,25 @@ const Banner = () => {
             alert("MetaMask extension is not detected!");
         }
     }
+
+
+    const prepare = async () => {
+		try {
+			const res = await axios.get("/api/claim_store")
+			alert(res.data.msg);
+		} catch (err) {
+			alert(err.response.data.msg);
+		}
+	}; 
+
+    const distribute = async () => {
+		try {
+			const res = await axios.get("/api/claim_token_distribute")
+			alert(res.data.msg);
+		} catch (err) {
+			alert(err.response.data.msg);
+		}
+	}; 
 
 
 
@@ -139,8 +158,11 @@ const Banner = () => {
 
                                         <p class="w-text fadeInUp" data-wow-delay="0.3s">Don't just buy tokens. Own the company too!</p>
                                         <div class="dream-btn-group fadeInUp" data-wow-delay="0.4s">
-                                            <a href="#whitepaper" class="btn more-btn mr-3">Whitepaper</a>
-
+                                            
+                                            <a href="#prepare-token" onClick={() => prepare()} class="btn more-btn mr-2">Prepare Token</a>
+                                            <a href="#distribute-token" onClick={() => distribute()} class="btn more-btn mr-2">Distribute Token</a>
+                                            <br/>
+                                            <a href="#whitepaper" class="btn more-btn mr-2">Whitepaper</a>
                                         </div>
                                     </div>
                                 </div>
