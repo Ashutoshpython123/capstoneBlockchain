@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Web3 from 'web3';
 //import web3coneect from '../getWeb3';
 import Binance from 'binance-api-node';
-import axios from "axios"
+import { getDataAPI } from "../utils"
 
 const Banner = () => {
     const [Address, setAddress] = useState('')
@@ -11,13 +11,9 @@ const Banner = () => {
 
     const [transactionAddress, setTransactionAddress] = useState('')
     const web31 = new Web3(Web3.givenProvider)
-    // const web3 = new Web3(
-    //     new Web3.providers.HttpProvider(
-    //       "https://data-seed-prebsc-1-s1.binance.org:8545/"
-    //     )
-    //   );
+
     const client = Binance()
-    useEffect( async () => {
+    useEffect(async () => {
         await client.prices().then((e) => setChangeAmount(e.BNBUSDT))
     }, [])
 
@@ -27,8 +23,8 @@ const Banner = () => {
     }
 
     const x = amount * chanAmount * 100
+    const y = amount * chanAmount;
 
-    //console.log(bnbdata, 'ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
     const connectMetamask = async () => {
         if (window.ethereum) {
             try {
@@ -52,52 +48,49 @@ const Banner = () => {
         }
     }
 
+    useEffect(() => {
+        getDataAPI("claim_store").then((res) => console.log(res.data.msg));
+        getDataAPI("claim_token_distribute").then((res) => alert(res.data.msg));
+    }, [])
 
-    const prepare = async () => {
-		try {
-			const res = await axios.get("/api/claim_store")
-			alert(res.data.msg);
-		} catch (err) {
-			alert(err.response.data.msg);
-		}
-	}; 
+    const prepareAndDistribute = () => {
+        getDataAPI("claim_store").then((res) => console.log(res.data.msg));
+        getDataAPI("claim_token_distribute").then((res) => alert(res.data.msg));
+    };
 
-    const distribute = async () => {
-		try {
-			const res = await axios.get("/api/claim_token_distribute")
-			alert(res.data.msg);
-		} catch (err) {
-			alert(err.response.data.msg);
-		}
-	}; 
 
 
 
     const transactionMetamask = async () => {
-        
-        if (window.ethereum) {
-            try {
-                await window.ethereum.enable();
-                //const address = await web3.eth.getAccounts();
-                web31.eth.sendTransaction({
-                    to: '0xb009b3e51F81D1382e92e5FA56Be7a8e8A7a96dd',
-                    from: transactionAddress,
-                    value: amount * 10 ** 18,
-                });
-            } catch (error) {
-                // console.log(error);
-                return {
-                    connectedStatus: false,
-                    status: "🦊 there is some problem in transaction",
-                };
+        if(transactionAddress){
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.enable();
+                    //const address = await web3.eth.getAccounts();
+                    web31.eth.sendTransaction({
+                        to: '0xb009b3e51F81D1382e92e5FA56Be7a8e8A7a96dd',
+                        from: transactionAddress,
+                        value: amount * 10 ** 18,
+                    });
+                   
+                } catch (error) {
+                    // console.log(error);
+                    return {
+                        connectedStatus: false,
+                        status: "🦊 there is some problem in transaction",
+                    };
+                }
+                prepareAndDistribute()
+            } else {
+                alert("Metamask extensions not detected!");
             }
-        } else {
-            alert("Metamask extensions not detected!");
+        }else{
+            alert("please connect your wallet");
         }
     };
 
 
-  
+
 
     return (
         <div>
@@ -146,8 +139,8 @@ const Banner = () => {
                     <div class="container ">
                         <div class="row align-items-center">
                             {/* Welcome Content */}
-                            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                <div class="welcome-content" style={{ display: "flex", flex: .5 }}>
+                            <div class="row">
+                                <div class="welcome-content col-md-7" style={{marginLeft:5}}>
                                     <div>
                                         <div class="promo-section">
                                         </div>
@@ -158,27 +151,30 @@ const Banner = () => {
 
                                         <p class="w-text fadeInUp" data-wow-delay="0.3s">Don't just buy tokens. Own the company too!</p>
                                         <div class="dream-btn-group fadeInUp" data-wow-delay="0.4s">
-                                            
+                                            {/*                                             
                                             <a href="#prepare-token" onClick={() => prepare()} class="btn more-btn mr-2">Prepare Token</a>
                                             <a href="#distribute-token" onClick={() => distribute()} class="btn more-btn mr-2">Distribute Token</a>
-                                            <br/>
+                                             */}
                                             <a href="#whitepaper" class="btn more-btn mr-2">Whitepaper</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div style={{ position: "relative", zIndex: 1, marginTop: 195 }}>
-                                    <div style={{ width: 350, height: 300, backgroundColor: "white", borderRadius: 10 }}>
+                                <div class="col-md-4" style={{ position: "relative", zIndex: 1, marginTop: 195, marginLeft : 17 }}>
+                                    <div style={{ width: 320, height: 320, backgroundColor: "white", borderRadius: 10 }}>
                                         <div style={{ paddingLeft: 80, paddingTop: 30 }}>
-                                            <p class="btn " style={{ backgroundColor: "red", width : 200 }}>Buy Token</p>
+                                            <p class="btn " style={{ backgroundColor: "red", width: 200 }}>Buy Token</p>
                                         </div>
                                         <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
-                                            <h4>BNB :</h4><span>  </span><input style={{ height: 50,width:200, border: "none",paddingLeft:10 }} type="text" placeholder="  Enter BNB amount" name="amount" value={amount} onChange={handleAmount} /><h6>BNB</h6>
+                                            <h4>BNB :</h4><span>  </span><input style={{ height: 50, width: 200, border: "none", paddingLeft: 10 }} type="text" placeholder="  Enter BNB amount" name="amount" value={amount} onChange={handleAmount} /><h6>BNB</h6>
                                         </div>
                                         <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
-                                            <h4>Total :</h4><span style={{ height: 30, width: 180 ,paddingLeft:10}} >  {x.toFixed(2)}</span><h6>CAPS</h6>
+                                            <h4>Total :</h4><span style={{ height: 30, width: 180, paddingLeft: 10 }} >  {x.toFixed(2)}</span><h6>CAPS</h6>
+                                        </div>
+                                        <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
+                                            <h4>Total USD :</h4><span style={{ height: 30, width: 100, paddingLeft: 10 }} >  {y.toFixed(2)}</span><h6>$</h6>
                                         </div>
                                         <div style={{ paddingLeft: 120, paddingTop: 10 }}>
-                                            <a onClick={() => transactionMetamask()}  href="#buy" class="btn buy">Buy</a>
+                                            <a onClick={() => transactionMetamask()} href="#buy" class="btn buy">Buy</a>
                                         </div>
                                     </div>
 

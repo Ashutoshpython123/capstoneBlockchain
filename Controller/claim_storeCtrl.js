@@ -141,7 +141,7 @@ const claimFactoryCtrl = {
 					// console.log(states, "9999999999999999");
 				}
 			}
-			res.json({ msg: "Tokens have been sent to repective users" });
+			res.json({ msg: "Tokens have been sent to respective users" });
 		} catch (err) {
 			return res.status(500).json({ msg: err.message });
 		}
